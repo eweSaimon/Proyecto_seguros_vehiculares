@@ -1,23 +1,24 @@
+<<<<<<< HEAD
 # Sistema de Validación de Seguros Vehiculares
 ### Arquitectura de Microservicios — Evaluación Final
 
-**Asignatura:** Desarrollo Web &nbsp;|&nbsp; **Docente:** Néstor Vélez Vargas  
+**Asignatura:** Arquitectura de hardware &nbsp;|&nbsp; **Docente:** Néstor Vélez Vargas  
 **Institución:** Unilasallista Corporación Universitaria  
 **Fecha de entrega:** 03 de Junio de 2026
 
 ---
 
-## 👥 Integrantes del equipo
+## Integrantes del equipo
 
 | Nombre | Código |
 |--------|--------|
-| [Nombre Estudiante 1] | [Código] |
-| [Nombre Estudiante 2] | [Código] |
-| [Nombre Estudiante 3] | [Código] |
+| [Simon Marulanda Giraldo] | [1035971594] |
+| [Samuel Valencia Agudelo] | [1038867473] |
+| [Alejandro Arango Munera] | [1045106216] |
 
 ---
 
-## 🚀 Inicio rápido
+## Inicio rápido
 
 ```bash
 # Windows — doble clic en:
@@ -35,7 +36,7 @@ cd validaciones && pip install -r requirements.txt && python -m uvicorn main:app
 
 ---
 
-## 📐 Arquitectura del sistema
+## Arquitectura del sistema
 
 ```
 CLIENTE (Postman / Navegador)
@@ -66,7 +67,7 @@ CLIENTE (Postman / Navegador)
 
 ---
 
-## 📦 Reglas de puntuación
+## Reglas de puntuación
 
 | Tipo de accidente | Puntos por evento |
 |-------------------|:-----------------:|
@@ -76,21 +77,21 @@ CLIENTE (Postman / Navegador)
 
 | Puntaje total | Resultado |
 |:-------------:|:---------:|
-| < 400 puntos | ✅ **APROBADA** |
-| ≥ 400 puntos | ❌ **RECHAZADA** |
+| < 400 puntos | **APROBADA** |
+| ≥ 400 puntos | **RECHAZADA** |
 
 ### Placas de prueba incluidas
 
 | Placa | Accidentes | Puntaje | Resultado |
 |-------|-----------|---------|-----------|
-| ABC123 | 1 lata + 1 herido | 300 | ✅ APROBADA |
-| XYZ789 | 1 lata + 1 muerto | 400 | ❌ RECHAZADA |
-| DEF456 | Sin accidentes | 0 | ✅ APROBADA |
-| GHI012 | 2 heridos + 1 muerto | 700 | ❌ RECHAZADA |
+| ABC123 | 1 lata + 1 herido | 300 | APROBADA |
+| XYZ789 | 1 lata + 1 muerto | 400 | RECHAZADA |
+| DEF456 | Sin accidentes | 0 | APROBADA |
+| GHI012 | 2 heridos + 1 muerto | 700 | RECHAZADA |
 
 ---
 
-## 📡 API Reference
+## API Reference
 
 ### Microservicio Fasecolda — Puerto 8001
 
@@ -116,7 +117,7 @@ CLIENTE (Postman / Navegador)
 
 ---
 
-## 🧠 Inversión de Dependencias (SOLID — Principio D)
+## Inversión de Dependencias (SOLID — Principio D)
 
 Aplicado en ambos microservicios. El servicio depende de interfaces, no de implementaciones:
 
@@ -129,7 +130,7 @@ El ensamblaje ocurre **únicamente** en `app/core/dependencies.py`.
 
 ---
 
-## 🗂️ Estructura del proyecto
+## Estructura del proyecto
 
 ```
 /
@@ -153,7 +154,7 @@ El ensamblaje ocurre **únicamente** en `app/core/dependencies.py`.
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 | Tecnología | Versión | Rol |
 |-----------|---------|-----|
@@ -164,3 +165,7 @@ El ensamblaje ocurre **únicamente** en `app/core/dependencies.py`.
 | Pydantic v2 | ≥ 2.9 | Validación de datos |
 | httpx | ≥ 0.27 | Cliente HTTP async |
 | Uvicorn | ≥ 0.30 | Servidor ASGI |
+=======
+# Proyecto_seguros_vehiculares
+Sistema de validación de pólizas — Microservicios FastAPI
+>>>>>>> 7567a64300def8da4639bb3010ac40562d3699d9

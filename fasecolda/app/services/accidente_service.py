@@ -10,7 +10,6 @@ from app.models.schemas import (
     EstadisticasResponse, VehiculoDestacado, ResumenTipo,
 )
 
-
 class AccidenteService:
     """
     Orquesta la lógica de negocio de Fasecolda.
@@ -27,7 +26,6 @@ class AccidenteService:
         self._accidentes    = accidente_repo
         self._estadisticas  = estadisticas_repo
 
-    # ── Vehículos ─────────────────────────────────────────────────────────────
 
     async def listar_vehiculos(self) -> List[VehiculoSchema]:
         vehiculos = await self._vehiculos.list_all()
@@ -43,7 +41,6 @@ class AccidenteService:
         nuevo = await self._vehiculos.create(data)
         return VehiculoSchema.model_validate(nuevo)
 
-    # ── Accidentes ────────────────────────────────────────────────────────────
 
     async def consultar_por_placa(self, placa: str) -> AccidentesPorPlacaResponse:
         vehiculo = await self._vehiculos.get_by_placa(placa)
@@ -82,7 +79,6 @@ class AccidenteService:
         nuevo = await self._accidentes.create(data)
         return AccidenteSchema.model_validate(nuevo)
 
-    # ── Estadísticas ──────────────────────────────────────────────────────────
 
     async def get_estadisticas(self) -> EstadisticasResponse:
         data = await self._estadisticas.get_resumen()

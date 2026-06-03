@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
 from sqlalchemy import select, func
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.models import Vehiculo, Accidente, TipoAccidente
 from app.models.schemas import VehiculoCreate, AccidenteCreate
@@ -35,7 +36,9 @@ class VehiculoRepository(IVehiculoRepository):
 
     async def get_by_placa(self, placa: str) -> Optional[Vehiculo]:
         result = await self._db.execute(
-            select(Vehiculo).where(Vehiculo.placa == placa.upper())
+            select(Vehiculo)
+            .options(selectinload(Vehiculo.accidentes).selectinload(Accidente.tipo))
+            .where(Vehiculo.placa == placa.upper())
         )
         return result.scalar_one_or_none()
 
@@ -98,6 +101,7 @@ class EstadisticasRepository(IEstadisticasRepository):
         # Vehículo con más accidentes
         top_acc_r = await self._db.execute(
             select(Vehiculo, func.count(Accidente.id).label("total"))
+            .options(selectinload(Vehiculo.accidentes).selectinload(Accidente.tipo))
             .join(Accidente, Accidente.vehiculo_id == Vehiculo.id, isouter=True)
             .group_by(Vehiculo.id)
             .order_by(func.count(Accidente.id).desc())
@@ -108,6 +112,7 @@ class EstadisticasRepository(IEstadisticasRepository):
         # Vehículo con mayor puntaje acumulado
         top_pts_r = await self._db.execute(
             select(Vehiculo, func.coalesce(func.sum(TipoAccidente.puntos), 0).label("puntaje"))
+            .options(selectinload(Vehiculo.accidentes).selectinload(Accidente.tipo))
             .join(Accidente,     Accidente.vehiculo_id       == Vehiculo.id,       isouter=True)
             .join(TipoAccidente, TipoAccidente.id            == Accidente.tipo_accidente_id, isouter=True)
             .group_by(Vehiculo.id)
